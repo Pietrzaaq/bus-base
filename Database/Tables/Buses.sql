@@ -1,0 +1,9 @@
+USE BusBase
+GO
+
+CREATE TABLE Buses 
+(
+	Id INT IDENTITY(1,1) PRIMARY KEY,
+	IsAvailable BIT DEFAULT(0)
+)
+GO
