@@ -1,10 +1,12 @@
 USE BusBase
 GO
 
-CREATE TABLE BusLine
+CREATE TABLE BusLineItem
 (
 	Id INT IDENTITY(1,1) PRIMARY KEY,
-	LineName VARCHAR(50) NOT NULL,
+	LineId INT NOT NULL,
+	BusStopId INT NOT NULL,
+	IsWithRoof BIT,
 	-- WorkingHours
 	CreatedDate DATETIME DEFAULT(GETDATE()) 
 )

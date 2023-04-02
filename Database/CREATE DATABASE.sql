@@ -1,2 +1,6 @@
-CREATE DATABASE BusBase;
+USE master
+GO
+
+CREATE DATABASE BusBase
+GO
 

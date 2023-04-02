@@ -1,0 +1,9 @@
+USE BusBase
+GO
+
+IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE NAME=N'BusBase')
+BEGIN
+    EXEC('CREATE SCHEMA [BusBase]');
+END
+GO
+

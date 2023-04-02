@@ -7,5 +7,10 @@ services:
     ports:
       - "1433:1433"
     environment:
-      SA_PASSWORD: "admin"
-      ACCEPT_EULA: "Strong_Password_Admin123!"
+      SA_PASSWORD: "Strong_Password"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - sqlserver:/var/lib/sql/data
+  
+  dotnet-app:
+    build: ./App/
