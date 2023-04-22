@@ -1,0 +1,14 @@
+USE BusBase;
+GO
+
+DECLARE @TableName VARCHAR(50) = 'Station';
+
+IF NOT EXISTS (SELECT NULL FROM sys.tables WHERE 'name' LIKE @TableName)
+BEGIN
+
+CREATE TABLE BusBase.Station (
+	Id INT IDENTITY(1,1) PRIMARY KEY,
+	Address VARCHAR(50)
+)
+
+END
