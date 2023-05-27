@@ -15,5 +15,8 @@ CREATE TABLE BusBase.[Addresses] (
 	Number INT
 )
 
+CREATE NONCLUSTERED INDEX IX_BusBase_Name
+ON BusBase.[Addresses](Name ASC)
+
 END
 GO

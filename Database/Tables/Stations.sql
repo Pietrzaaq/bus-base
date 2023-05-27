@@ -11,7 +11,7 @@ BEGIN
 CREATE TABLE BusBase.Stations (
 	Id INT IDENTITY(1,1) PRIMARY KEY,
 	Zone VARCHAR(50),
-	Address INT FOREIGN KEY REFERENCES BusBase.Addresses (Id)
+	AddressId INT FOREIGN KEY REFERENCES BusBase.Addresses (Id)
 )
 
 END
