@@ -12,7 +12,7 @@ CREATE TABLE BusBase.[Addresses] (
 	Id INT IDENTITY(1,1) PRIMARY KEY,
 	[Prefix] VARCHAR(10),
 	[Name] VARCHAR(50),
-	Number INT
+	AddressNumber INT
 )
 
 CREATE NONCLUSTERED INDEX IX_BusBase_Name

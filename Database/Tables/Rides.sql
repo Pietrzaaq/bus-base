@@ -9,10 +9,10 @@ IF OBJECT_ID(@NameWithSchema) IS NULL
 BEGIN
 
 CREATE TABLE BusBase.Rides (
-	Id INT IDENTITY(1,1) PRIMARY KEY,
-	LineId INT FOREIGN KEY REFERENCES BusBase.Lines (Id),
-	DriverId INT FOREIGN KEY REFERENCES BusBase.Drivers (Id),
-	VehicleId INT FOREIGN KEY REFERENCES BusBase.Vehicles (Id),
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    LineId INT FOREIGN KEY REFERENCES BusBase.Lines (Id),
+    DriverId INT FOREIGN KEY REFERENCES BusBase.Drivers (Id),
+    VehicleId INT FOREIGN KEY REFERENCES BusBase.Vehicles (Id),
     ShiftFrom DATETIME DEFAULT GETDATE(),
     ShiftTo DATETIME
 )
