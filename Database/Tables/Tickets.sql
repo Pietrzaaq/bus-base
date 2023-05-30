@@ -9,8 +9,8 @@ IF OBJECT_ID(@NameWithSchema) IS NULL
 BEGIN
 
 CREATE TABLE BusBase.Tickets (
-	Id INT IDENTITY(1,1) PRIMARY KEY,
-	TicketTypeId INT FOREIGN KEY REFERENCES BusBase.TicketTypes (Id),
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    TicketTypeId INT FOREIGN KEY REFERENCES BusBase.TicketTypes (Id),
     Discount BIT,
     [Name] VARCHAR(50)
 )

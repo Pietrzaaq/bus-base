@@ -1,4 +1,4 @@
-USE BusBase
+USE BusBase;
 GO
 
 DECLARE @TableName VARCHAR(50) = 'Vehicles';
