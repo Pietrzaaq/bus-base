@@ -1,0 +1,7 @@
+USE BusBase;
+GO
+
+CREATE OR ALTER VIEW BusBase.vwNewRand
+AS
+    SELECT RAND() AS Value
+GO

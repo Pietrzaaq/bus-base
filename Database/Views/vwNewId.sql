@@ -1,0 +1,7 @@
+USE BusBase;
+GO
+
+CREATE OR ALTER VIEW BusBase.vwNewId
+AS
+    SELECT NEWID() AS NewId
+GO

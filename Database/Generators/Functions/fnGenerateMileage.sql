@@ -1,0 +1,9 @@
+USE BusBase;
+GO
+
+CREATE OR ALTER FUNCTION BusBase.fnGenerateMileage()
+RETURNS INT
+AS
+BEGIN
+    RETURN ROUND((SELECT Value FROM BusBase.vwNewRand) * 1000000,0)
+END;
