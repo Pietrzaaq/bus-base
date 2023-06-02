@@ -11,7 +11,7 @@ BEGIN
 CREATE TABLE BusBase.VehicleTypes
 (
     Id INT IDENTITY (1,1) PRIMARY KEY,
-    VehicleTypeqName VARCHAR(50),
+    VehicleTypeName VARCHAR(50),
 );
 
 END
