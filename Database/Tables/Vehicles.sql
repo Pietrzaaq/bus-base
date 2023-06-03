@@ -21,3 +21,4 @@ CREATE TABLE BusBase.Vehicles
 
 END
 GO
+

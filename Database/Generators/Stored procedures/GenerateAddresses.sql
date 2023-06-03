@@ -1,9 +1,10 @@
 USE BusBase;
 GO
 
-CREATE OR ALTER PROCEDURE BusBase.GenerateDrivers @NumberOfRecords INT
+CREATE OR ALTER PROCEDURE BusBase.GenerateAddresses @NumberOfRecords INT
 AS
     DECLARE @ErrorMessage VARCHAR(200);
+    DECLARE @Iterator INT = 0;
 
     BEGIN TRY
         BEGIN TRAN
@@ -14,14 +15,21 @@ AS
             THROW 50001, @ErrorMessage, 1;
         END
 
-        INSERT INTO BusBase.Drivers (Pesel, Firstname, Lastname, IsBusDriver, IsTramDriver, IsRetired)
-        SELECT
-            D.Pesel, D.Firstname, D.Lastname, D.IsBusDriver, D.IsTramDriver, D.IsRetired
-        FROM BusBase.fnGenerateDrivers(@NumberOfRecords) D
+        WHILE (@Iterator < @NumberOfRecords)
+        BEGIN
+
+            INSERT INTO BusBase.Addresses (Prefix, Name, Number)
+            SELECT
+                (SELECT TOP 1 Name FROM BusBase.GeneratedPrefixes ORDER BY NEWID()),
+                (SELECT TOP 1 Name FROM BusBase.GeneratedStreetNames ORDER BY NEWID()),
+                ROUND(RAND() * 100,0) + 1
+
+            SET @Iterator = @Iterator + 1
+        END
 
         COMMIT TRAN
 
-        PRINT(STR(@NumberOfRecords) + ' drivers created successfully');
+        PRINT(STR(@NumberOfRecords) + ' addresses created successfully');
     END TRY
     BEGIN CATCH
         IF @@TRANCOUNT > 0 ROLLBACK;

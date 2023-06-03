@@ -16,3 +16,10 @@ CREATE TABLE BusBase.VehicleTypes
 
 END
 GO
+
+INSERT INTO BusBase.VehicleTypes (VehicleTypeName)
+VALUES ('Bus');
+INSERT INTO BusBase.VehicleTypes (VehicleTypeName)
+VALUES ('Tram');
+
+DROP TABLE  BusBase.VehicleTypes
