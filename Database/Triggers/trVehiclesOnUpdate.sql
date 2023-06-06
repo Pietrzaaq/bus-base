@@ -2,32 +2,32 @@ USE BusBase
 GO
 
 CREATE TRIGGER trVehiclesOnUpdate
-ON BusBase.Rides
+ON BusBase.Vehicles
 FOR UPDATE
 AS
 BEGIN
-    DECLARE @RandomVehicleId INT =
-        (SELECT TOP 1 Id FROM BusBase.Vehicles WHERE IsAvailable = 0 ORDER BY NEWID())
 
---     DECLARE @CurrentlyRunningRide INT =
---         ((SELECT TOP 1
---             R.Id
---         FROM
---             BusBase.Vehicles V
---             INNER JOIN BusBase.Rides R on V.Id = R.VehicleId
---         WHERE
---             V.Id = @RandomVehicleId
---             AND R.ShiftTo IS NULL) IS NULL)
-
---     IF @CurrentlyRunningRide = 1
---         UPDATE BusBase.Rides
---         SET ShiftTo = GETDATE()
-
-    UPDATE BusBase.Vehicles
-    SET
-        IsAvailable = 1
+    DECLARE @UpdatedVehicleIds TABLE (Id INT);
+    INSERT INTO @UpdatedVehicleIds (Id)
+    SELECT
+        V.Id
+    FROM
+         BusBase.Vehicles V
+        INNER JOIN INSERTED I ON V.Id = I.Id
     WHERE
-        Id = @RandomVehicleId
+        V.IsAvailable = 0
 
-    SELECT @RandomVehicleId
+    IF EXISTS (SELECT NULL FROM @UpdatedVehicleIds)
+    BEGIN
+        DECLARE @RandomVehicleId INT =
+            (SELECT TOP 1 Id FROM BusBase.Vehicles WHERE IsAvailable = 1 ORDER BY NEWID())
+
+        UPDATE BusBase.Rides
+            SET
+                ShiftTo = GETDATE(),
+                VehicleId = @RandomVehicleId
+        WHERE
+            VehicleId IN (SELECT Id FROM @UpdatedVehicleIds)
+
+    END
 END
