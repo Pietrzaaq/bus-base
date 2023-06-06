@@ -10,7 +10,7 @@ BEGIN
 
 CREATE TABLE BusBase.TicketTypes (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    [Zone] VARCHAR(50),
+    [Zone] VARCHAR(50), -- '1', '2', '1+2'
     ActiveTimeInMinutes INT,
     PRICE FLOAT
 )

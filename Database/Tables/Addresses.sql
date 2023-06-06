@@ -15,6 +15,8 @@ CREATE TABLE BusBase.[Addresses] (
 	AddressNumber INT
 )
 
+DROP INDEX IX_BusBase_Name ON BusBase.Addresses
+
 CREATE NONCLUSTERED INDEX IX_BusBase_Name
 ON BusBase.[Addresses](Name ASC)
 

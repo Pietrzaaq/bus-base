@@ -11,9 +11,12 @@ BEGIN
 CREATE TABLE BusBase.Lines (
 	Id INT IDENTITY(1,1) PRIMARY KEY,
 	[Name] VARCHAR(50),
-	LineType VARCHAR(3), -- 'T' means town 'OUT' means out-of-town
+	[Zone] VARCHAR(3), -- '1', '2', '1+2'
+	LineVehicleTypeId INT FOREIGN KEY REFERENCES BusBase.VehicleTypes (Id),
 	FromStationId INT FOREIGN KEY REFERENCES BusBase.Stations (Id),
 	ToStationId INT FOREIGN KEY REFERENCES BusBase.Stations (Id)
 )
 
 END
+
+DROP TABLE BusBase.Lines

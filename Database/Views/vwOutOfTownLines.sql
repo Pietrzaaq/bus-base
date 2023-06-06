@@ -20,7 +20,7 @@ AS
         INNER JOIN BusBase.Addresses ToA
         ON ToS.Address = ToA.Id
     WHERE
-        L.LineType LIKE 'OUT'
+        L.Zone = '2'
 
 GO
 

@@ -18,8 +18,11 @@ AS
             THROW 50001, @ErrorMessage, 1;
         END
 
-        INSERT INTO
-            @MatchingLinesId
+        DECLARE @LineName VARCHAR(40) = 'D25'
+        SELECT * FROM BusBase.Lines
+
+--         INSERT INTO
+--             @MatchingLinesId
         SELECT
             Id
         FROM

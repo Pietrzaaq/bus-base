@@ -1,16 +1,16 @@
 USE BusBase;
 GO
 
-CREATE OR ALTER VIEW BusBase.vwCurrentYearRidesHistory
-AS
+DROP VIEW dbo.vwCurrentYearRidesHistory
+
+CREATE VIEW dbo.vwCurrentYearRidesHistory
+WITH SCHEMABINDING
+    AS
 
     SELECT
         R.Id,
         L.Name AS 'LineName',
         V.Model AS 'VehicleModel',
-        D.Firstname + ' ' + D.Lastname AS 'DriverFullName',
-        FromA.Name + ' ' + STR(FromA.Number) AS 'FromAddress',
-        ToA.Name + ' ' + STR(ToA.Number) AS 'ToAddress',
         V.ProductionYear AS 'VehicleProductionYear',
         R.ShiftFrom,
         R.ShiftTo
@@ -32,7 +32,10 @@ AS
         ON ToS.Address = ToA.Id
     WHERE
         YEAR(R.ShiftFrom) = YEAR(GETDATE())
+GO
 
+CREATE UNIQUE CLUSTERED INDEX vwCurrentYearRidesHistoryIndex
+   ON dbo.vwCurrentYearRidesHistory (Id, ShiftFrom, ShiftTo);
 GO
 
 
